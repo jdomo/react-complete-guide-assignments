@@ -1,0 +1,8 @@
+.UserInput {
+  border: 1px solid #ed4c4c;
+  width: 60%;
+}
+
+input:focus {
+  outline: none;
+}
