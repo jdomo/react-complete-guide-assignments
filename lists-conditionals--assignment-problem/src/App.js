@@ -7,35 +7,30 @@ class App extends Component {
   
   state = {
     inputLength: 0,
-    inputArray: [],
+    inputValue: '',
   }
   
   onChangeHandler = (e) => {
     const inputLength = e.target.value.length;
-    const inputArray = e.target.value.split('');
+    const inputValue = e.target.value;
 
     this.setState({
       inputLength: inputLength,
-      inputArray: inputArray
+      inputValue: inputValue
     });
   }
 
   onClickHandler = (index) => {
-    const inputArray = [...this.state.inputArray];
+    const inputArray = this.state.inputValue.split('');
     inputArray.splice(index, 1);
-    this.setState({inputArray: inputArray});
+    this.setState({inputValue: inputArray.join('')});
   }
 
   render() {
-    console.log(this.state, '<--state');
 
-    let charArray = null;
-
-    if (this.state.inputArray.length) {
-      charArray = this.state.inputArray.map((item, index) => {
-          return <CharComponent content={item} click={() => this.onClickHandler(index)}/>
-      })
-    }
+    const charArray = this.state.inputValue.split('').map((item, index) => {
+        return <CharComponent key={index} content={item} click={() => this.onClickHandler(index)}/>
+    })
 
     return (
       <div className="App">
@@ -52,7 +47,7 @@ class App extends Component {
         <h1>Solutions</h1>
 
         <h2>1.</h2>
-        <input type="text" onChange={this.onChangeHandler}></input>
+        <input type="text" onChange={this.onChangeHandler} value={this.state.inputValue}></input>
         <p>{this.state.inputLength}</p>
 
         <h2>2.</h2>
