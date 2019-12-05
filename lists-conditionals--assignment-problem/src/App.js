@@ -11,11 +11,10 @@ class App extends Component {
   }
   
   onChangeHandler = (e) => {
-    const inputLength = e.target.value.length;
+
     const inputValue = e.target.value;
 
     this.setState({
-      inputLength: inputLength,
       inputValue: inputValue
     });
   }
@@ -51,7 +50,7 @@ class App extends Component {
         <p>{this.state.inputLength}</p>
 
         <h2>2.</h2>
-        <ValidationComponent length={this.state.inputLength}/>
+        <ValidationComponent length={this.state.inputValue.length}/>
 
         <h2>3.</h2>
         {charArray}
